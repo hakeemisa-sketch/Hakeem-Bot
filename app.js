@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: false }));
 // Initialize clients
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY
+  process.env.SUPABASE_ANON_KEY
 );
 
 const anthropic = new Anthropic({
