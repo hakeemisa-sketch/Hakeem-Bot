@@ -10,6 +10,12 @@ app.get('/health', (req, res) => {
 });
 
 app.post('/whatsapp/webhook', async (req, res) => {
+  console.log('📨 Webhook received:', {
+    from: req.body.From,
+    body: req.body.Body,
+    timestamp: new Date().toISOString()
+  });
+  
   const phoneNumber = req.body.From?.replace('whatsapp:', '') || '';
   const userMessage = req.body.Body || '';
   
@@ -22,7 +28,7 @@ app.post('/whatsapp/webhook', async (req, res) => {
     });
     res.status(200).send('OK');
   } catch (error) {
-    console.error(error);
+    console.error('❌ Error:', error.message);
     res.status(500).send('Error');
   }
 });
